@@ -20,7 +20,10 @@ class DummyPhotoBackend(object):
 # Choose the fetcher class
 backend_klass = DummyPhotoBackend
 try:
-    backend_klass = __import__(PHOTO_BACKEND)
+    backend_module_name, backend_klass_name = PHOTO_BACKEND.rsplit('.', 1)
+    backend_module = __import__(backend_module_name,
+                                fromlist=[backend_klass_name, ])
+    backend_klass = getattr(backend_module, backend_klass_name)
 except (ImportError, TypeError):
     backend_klass = DummyPhotoBackend
 
