@@ -6,5 +6,5 @@ from .views import js_connect_auth_view
 
 # Our URLPatterns
 urlpatterns = patterns('',
-    url(r'^$', js_connect_auth_view,name = 'js_connect_index'),
+    url(r'^$', js_connect_auth_view, name='js_connect_index'),
 )

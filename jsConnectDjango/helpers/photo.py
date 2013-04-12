@@ -8,12 +8,11 @@ from django.conf import settings
 from .settings import PHOTO_BACKEND
 
 
-
 class DummyPhotoBackend(object):
     default_photo = ''
 
     # Get the actual profile photo
-    def fetch(self, user, default_photo = None):
+    def fetch(self, user, default_photo=None):
         return default_photo
 
 

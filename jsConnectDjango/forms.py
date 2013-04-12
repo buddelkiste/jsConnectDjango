@@ -21,15 +21,13 @@ class JsConnectForm(forms.Form):
     server_secret = forms.CharField()
 
     # Optional
-    callback = forms.CharField(required = False)
-
+    callback = forms.CharField(required=False)
 
     def clean_timestamp(self):
         timestamp = self.cleaned_data['timestamp']
         if timestamp + TIMEOUT < time.time():
             raise forms.ValidationError("JsConnect timestamp has timed out")
         return timestamp
-
 
     def clean(self, *args, **kwargs):
         cleaned_data = super(JsConnectForm, self).clean(*args, **kwargs)
@@ -44,8 +42,7 @@ class JsConnectForm(forms.Form):
 
         return cleaned_data
 
-
-    def get_response_data(self, user, secure = True):
+    def get_response_data(self, user, secure=True):
         response_data = {}
 
         # Success
@@ -54,13 +51,14 @@ class JsConnectForm(forms.Form):
             secret = self.cleaned_data['server_secret']
             signature = self.cleaned_data['signature']
             response_data.update(user)
-            response_data = js_connect_sign(user, client_id, secret, secure, True)
+            response_data = js_connect_sign(user, client_id, secret, secure,
+                                            True)
 
         # Failure
         elif not 'signature' in self.data and not 'timestamp' in self.data:
             response_data = {
-                'name' : user.get('name', ''),
-                'photourl' : user.get('photourl', ''),
+                'name': user.get('name', ''),
+                'photourl': user.get('photourl', ''),
             }
         else:
             response_data['error'] = 'invalid_request'

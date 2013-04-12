@@ -5,7 +5,8 @@ from urllib import urlencode
 # Local imports
 from .hash import js_connect_hash
 
-def js_connect_sign(data, client_id, secret, hash_type, return_data = False):
+
+def js_connect_sign(data, client_id, secret, hash_type, return_data=False):
     old_data = data
     keys = data.keys()
     keys.sort()

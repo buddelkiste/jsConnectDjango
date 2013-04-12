@@ -23,10 +23,10 @@ def default_hash_func(hash_type):
 
 
 # Hashes a string in MD5 or SHA1 depending on secure
-def js_connect_hash(string, secure = True):
+def js_connect_hash(string, secure=True):
     hash_func = default_hash_func
     if secure == 'md5' or isinstance(secure, bool):
         hash_func = hash_md5
     elif secure == 'sha1':
         hash_func = hash_sha1
-    return hash_func(string) 
+    return hash_func(string)
