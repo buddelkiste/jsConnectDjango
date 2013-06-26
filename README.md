@@ -42,8 +42,8 @@ There's a simple ``EmbeddedSsoMixin`` which will provide exactly that value in t
         
 Then in the ``forum/embedded.html`` template:
     
-    | <script type="text/javascript">
-    |     var vanilla_sso = '{{ vanilla_sso_string }}';
-    | </script>
-    | <script type="text/javascript" src="http://YOURFORUM.vanillaforums.com/js/embed.js"></script>
+    <script type="text/javascript">
+        var vanilla_sso = '{{ vanilla_sso_string }}';
+    </script>
+    <script type="text/javascript" src="http://YOURFORUM.vanillaforums.com/js/embed.js"></script>
         
