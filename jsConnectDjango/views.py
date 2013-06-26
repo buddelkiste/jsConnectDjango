@@ -1,7 +1,9 @@
 # Django imports
 from django.http import HttpResponse
+from django.views.generic.base import ContextMixin
 
 # Helper imports
+from .helpers import embed as embedded_helper
 from .helpers import photo as photo_helper
 from .helpers import settings as settings_helper
 from .helpers.response import js_connect_response
@@ -40,3 +42,13 @@ def js_connect_auth_view(request):
     callback = form.data.get('callback', None)
 
     return js_connect_response(response_data, callback=callback)
+
+
+# A simple ContectMixin to use in class-based views to provide
+# vanilla_sso_string context variable into template
+class EmbeddedSsoMixin(ContextMixin):
+
+    def get_context_data(self, **kwargs):
+        context = super(EmbeddedSsoMixin, self).get_context_data(**kwargs)
+        context['vanilla_sso_string'] = embedded_helper.get_sso_string(self.request.user)
+        return context
