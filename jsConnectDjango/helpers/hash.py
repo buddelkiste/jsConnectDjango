@@ -1,5 +1,6 @@
 # Python imports
 import hashlib
+import hmac
 
 
 # A simple decorator
@@ -30,3 +31,8 @@ def js_connect_hash(string, secure=True):
     elif secure == 'sha1':
         hash_func = hash_sha1
     return hash_func(string)
+
+
+# Return hmac(sha1) hash for embedded Vanilla Forum instance
+def js_connect_embedded_hash(string, secret):
+    return hmac.new(secret, string, hashlib.sha1).hexdigest()
