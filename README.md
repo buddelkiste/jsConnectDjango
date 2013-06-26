@@ -1,12 +1,10 @@
 jsConnectDjango
 ===============
 
-Django implementation of jsConnect for VanillaForums
-
-## Check example for test code
+Django implementation of jsConnect for VanillaForums.
 
 It implements the std interface for a jsConnect addon
-you may need to provide your own backend for returning URLs
+you may need to provide your own backend for returning user photo URLs.
 
 Basic usage
 -----------
