@@ -23,7 +23,7 @@ try:
     backend_module = __import__(backend_module_name,
                                 fromlist=[backend_klass_name, ])
     backend_klass = getattr(backend_module, backend_klass_name)
-except (ImportError, TypeError):
+except (ImportError, TypeError, AttributeError):
     backend_klass = DummyPhotoBackend
 
 
